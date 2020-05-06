@@ -12,7 +12,7 @@ size_t len_listint(const listint_t *h);
 int is_palindrome(listint_t **head)
 {
 	listint_t *temp;
-	int i, j, size;
+	int i, start, size, end;
 	int *array;
 
 	if (*head == NULL || head == NULL)
@@ -23,22 +23,21 @@ int is_palindrome(listint_t **head)
 	if (array == NULL)
 		return (0);
 
-	i = j = 0;
-	for (temp = *head; temp != NULL; temp = temp->next)
+	current = *head;
+	i = 0;
+	while (current != NULL)
 	{
-		if (i < size / 2)
+		array[i] = current->n;
+		current = current->next;
+		i++;
+	}
+	end = size - 1;
+	for (start = 0; start < size / 2; start++, end--)
+	{
+		if (array[start] != array[end])
 		{
-			array[i] = temp->n;
-			i++;
-			j++;
-		}
-		else
-		{
-			if (array[--j] != temp->n)
-			{
-				free(array);
-				return (0);
-			}
+			free(array);
+			return (0);
 		}
 	}
 	free(array);
