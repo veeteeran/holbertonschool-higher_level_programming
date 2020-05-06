@@ -11,7 +11,7 @@ size_t len_listint(const listint_t *h);
  */
 int is_palindrome(listint_t **head)
 {
-	listint_t *temp;
+	listint_t *current;
 	int i, start, size, end;
 	int *array;
 
