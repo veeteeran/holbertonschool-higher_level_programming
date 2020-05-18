@@ -1,13 +1,15 @@
 #!/usr/bin/python3
+from dis import dis
 def magic_calculation(a, b):
-    result = 0 
+    result = 0
     for i in range(1, 3):
         try:
             if i > a:
-                raise IndexError('Too far')
-
-            result += (a ** b) / i
+                raise Exception('Too far')
+            else:
+                result += (a ** b) / i
         except:
             result = b + a
-        finally:
-            return result
+    return result
+
+dis(magic_calculation)
