@@ -8,10 +8,10 @@ class Square:
         """Initializes data"""
         self.size = size
 
-        new_position = position
-        if (len(position) == 1):
-            new_position = (position[0], 0)
-        self.position = new_position
+#        new_position = position
+ #       if (len(position) == 1):
+  #          new_position = (position[0], 0)
+        self.position = position
 
     @property
     def size(self):
@@ -50,8 +50,7 @@ class Square:
         if (self.__size == 0):
             print()
         else:
-            print("{}".format("" * self.__position[1]), end='')
+            print("{}".format("\n" * self.__position[1]), end='')
             for row in range(self.__size):
                 print("{}".format(" " * self.__position[0]), end='')
                 print("{}".format("#" * self.__size, end=''))
-            print()
