@@ -7,10 +7,6 @@ class Square:
     def __init__(self, size=0, position=(0, 0)):
         """Initializes data"""
         self.size = size
-
-#        new_position = position
- #       if (len(position) == 1):
-  #          new_position = (position[0], 0)
         self.position = position
 
     @property
@@ -33,10 +29,10 @@ class Square:
         """getter method propert for Square object"""
         return self.__position
 
-    @size.setter
+    @position.setter
     def position(self, value):
         """setter method property with type check"""
-        if (value[0] < 0 or value[1] < 0):
+        if (type(value) != tuple or len(value) != 2 or value[0] < 0 or value[1] < 0):
             raise TypeError("position must be a tuple of 2 positive integers")
         else:
             self.__position = value
