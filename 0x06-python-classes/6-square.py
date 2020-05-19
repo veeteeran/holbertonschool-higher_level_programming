@@ -12,6 +12,10 @@ class Square:
             position (tuple): position of square
 
         """
+        if (type(size) != int):
+            raise TypeError("size must be an integer")
+        elif (size < 0):
+            raise ValueError("size must be >= 0")
         self.size = size
         if type(position) != tuple or len(position) != 2 \
                 or position[0] < 0 or position[1] < 0 or \
