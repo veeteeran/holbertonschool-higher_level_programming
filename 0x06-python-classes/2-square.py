@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+"""Creates a square object"""
 class Square:
     """Creates a Square object"""
     def __init__(self, size=0):
