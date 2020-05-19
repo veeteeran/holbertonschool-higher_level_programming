@@ -52,3 +52,4 @@ class Square:
             for row in range(self.__size):
                 print("{}".format(" " * self.__position[0]), end='')
                 print("{}".format("#" * self.__size, end=''))
+        print()
