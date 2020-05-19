@@ -1,4 +1,7 @@
 #!/usr/bin/python3
+"""Creates a Square object"""
+
+
 class Square:
     """Creates a Square object"""
     def __init__(self, size=0):
@@ -11,5 +14,5 @@ class Square:
             self.__size = size
 
     def area(self):
-        """ Returns the area of Square object"""
+        """Returns the area of Square object"""
         return self.__size * self.__size
