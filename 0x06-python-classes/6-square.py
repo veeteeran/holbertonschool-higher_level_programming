@@ -5,7 +5,13 @@
 class Square:
     """Creates a Square object"""
     def __init__(self, size=0, position=(0, 0)):
-        """Initializes data"""
+        """Initializes data
+
+        Args:
+            size (int): size of square
+            position (tuple): position of square
+
+        """
         self.size = size
         if type(position) != tuple or len(position) != 2 \
                 or position[0] < 0 or position[1] < 0 or \
@@ -44,7 +50,11 @@ class Square:
             self.__position = value
 
     def area(self):
-        """Returns the area of Square object"""
+        """Calculate the area of Square object
+
+        Returns:
+            Area of square
+        """
         return self.__size * self.__size
 
     def my_print(self):
