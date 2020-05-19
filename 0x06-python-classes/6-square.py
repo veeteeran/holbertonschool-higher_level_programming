@@ -47,9 +47,9 @@ class Square:
         """Prints out Square using hashes(#)"""
         if (self.__size == 0):
             print()
+            return
         else:
             print("{}".format("\n" * self.__position[1]), end='')
             for row in range(self.__size):
                 print("{}".format(" " * self.__position[0]), end='')
                 print("{}".format("#" * self.__size, end=''))
-        print()
