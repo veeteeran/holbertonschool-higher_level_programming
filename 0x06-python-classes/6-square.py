@@ -51,8 +51,8 @@ class Square:
     def position(self, value):
         """setter method property with type check"""
         if type(value) is not tuple or len(value) is not 2 or value[0] < 0 \
-                or value[1] < 0 or type(value[0]) is not int or type(value[1]) \
-                is not int:
+                or value[1] < 0 or type(value[0]) is not int or \
+                type(value[1]) is not int:
             raise TypeError("position must be a tuple of 2 positive integers")
         self.__position = value
 
@@ -72,5 +72,4 @@ class Square:
             print("\n" * self.__position[1], end="")
             for row in range(self.__size):
                 print(" " * self.__position[0], end="")
-                print("#" * self.__size, end="")
-                print()
+                print("#" * self.__size)
