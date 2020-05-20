@@ -59,7 +59,7 @@ class Square:
     def my_print(self):
         """Prints out Square using hashes(#)"""
         if self.__size == 0:
-            print(i)
+            print()
         else:
             print("\n" * self.__position[1], end="")
             for row in range(self.__size):
