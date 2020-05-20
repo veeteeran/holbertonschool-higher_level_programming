@@ -30,13 +30,17 @@ class Square:
 
     @size.setter
     def size(self, value):
-        """setter method size with type and value check for Square"""
+        """
+        setter method size with type and value check for Square
+
+        Args:
+            value: size of the square
+        """
         if (type(value) != int):
             raise TypeError("size must be an integer")
         elif (value < 0):
             raise ValueError("size must be >= 0")
-        else:
-            self.__size = value
+        self.__size = value
 
     @property
     def position(self):
@@ -50,8 +54,7 @@ class Square:
                 or value[1] < 0 or type(value[0]) != int or type(value[1]) \
                 != int:
             raise TypeError("position must be a tuple of 2 positive integers")
-        else:
-            self.__position = value
+        self.__position = value
 
     def area(self):
         """Calculate the area of Square object
@@ -66,7 +69,8 @@ class Square:
         if (self.__size == 0):
             print()
         else:
-            print("{}".format("\n" * self.__position[1]), end='')
+            for newline in range(self.__position[1]):
+                print()
             for row in range(self.__size):
                 print("{}".format(" " * self.__position[0]), end='')
                 print("{}".format("#" * self.__size, end=''))
