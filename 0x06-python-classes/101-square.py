@@ -75,6 +75,6 @@ class Square:
             for row in range(self.__size):
                 print(" " * self.__position[0], end="")
                 print("#" * self.__size, end="")
-                if row is not self.__size - 1:
+                if row != self.__size - 1:
                     print()
         return ""
