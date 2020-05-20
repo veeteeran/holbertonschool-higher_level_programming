@@ -30,4 +30,3 @@ class Square:
     def __new__(self, size):
             """Creates new instance of the same object"""
             return size
-
