@@ -59,13 +59,13 @@ class Square:
     def my_print(self):
         """Prints out Square using hashes(#)"""
         if self.__size == 0:
-            print()
-        else:
-            for newline in range(self.__position[1]):
-                print()
-            for row in range(self.__size):
-                for spaces in range(self.__position[0]):
-                    print(" ", end="")
-                for hashes in range(self.__size):
-                    print("#", end="")
-                print()
+            print("")
+            return
+        for newline in range(self.__position[1]):
+            print("")
+        for row in range(self.__size):
+            for spaces in range(self.__position[0]):
+                print(" ", end="")
+            for hashes in range(self.__size):
+                print("#", end="")
+            print("")
