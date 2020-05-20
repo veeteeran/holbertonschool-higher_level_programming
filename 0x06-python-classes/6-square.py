@@ -12,15 +12,7 @@ class Square:
             position (tuple): position of square
 
         """
-        if (type(size) is not int):
-            raise TypeError("size must be an integer")
-        elif (size < 0):
-            raise ValueError("size must be >= 0")
         self.size = size
-        if type(position) is not tuple or len(position) is not 2 \
-                or position[0] < 0 or position[1] < 0 or \
-                type(position[0]) is not int or type(position[1]) is not int:
-            raise TypeError("position must be a tuple of 2 positive integers")
         self.position = position
 
     @property
@@ -36,9 +28,9 @@ class Square:
         Args:
             value: size of the square
         """
-        if (type(value) != int):
+        if type(value) is not int:
             raise TypeError("size must be an integer")
-        elif (value < 0):
+        elif value < 0:
             raise ValueError("size must be >= 0")
         self.__size = value
 
@@ -62,11 +54,11 @@ class Square:
         Returns:
             Area of square
         """
-        return self.__size * self.__size
+        return self.__size ** 2
 
     def my_print(self):
         """Prints out Square using hashes(#)"""
-        if (self.__size == 0):
+        if self.__size == 0:
             print()
         else:
             print("\n" * self.__position[1], end="")
