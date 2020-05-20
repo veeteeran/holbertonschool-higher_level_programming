@@ -61,7 +61,11 @@ class Square:
         if self.__size == 0:
             print()
         else:
-            print("\n" * self.__position[1], end="")
+            for newline in range(self.__position[1]):
+                print()
             for row in range(self.__size):
-                print(" " * self.__position[0], end="")
-                print("#" * self.__size)
+                for spaces in range(self.__position[0]):
+                    print(" ", end="")
+                for hashes in range(self.__size):
+                    print("#", end="")
+                print()
