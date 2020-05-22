@@ -19,6 +19,9 @@ First name only input
     >>> say_my_name("Bob")
     My name is Bob 
 
+    >>> say_my_name("", "")
+    My name is  
+
 Invalid input with int, bool, no input
 
 ::
