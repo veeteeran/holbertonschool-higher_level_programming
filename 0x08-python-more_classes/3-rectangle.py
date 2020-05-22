@@ -70,6 +70,9 @@ class Rectangle:
 
     def __str__(self):
         """Print rectangle using #"""
+        if self.__width == 0 or self.__height == 0:
+            return ""
+
         string = ""
         for row in range(self.__height):
             string += ("#" * self.__width)
