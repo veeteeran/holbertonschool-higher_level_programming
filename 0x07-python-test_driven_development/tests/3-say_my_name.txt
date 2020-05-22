@@ -1,0 +1,36 @@
+=========================
+How to Use say_my_name.py
+=========================
+
+Strings
+=======
+
+``say_my_name()`` prints My name is <first_name> <last_name> (if entered)
+::
+
+    >>> say_my_name = __import__('3-say_my_name').say_my_name
+    >>> say_my_name("John", "Smith")
+    My name is John Smith
+
+First name only input
+
+::
+
+    >>> say_my_name("Bob")
+    My name is Bob 
+
+Invalid input with int, bool, no input
+
+::
+
+    >>> say_my_name(12, "White")
+    Traceback (most recent call last):
+    TypeError: first_name must be a string
+
+    >>> say_my_name("Walter", True)
+    Traceback (most recent call last):
+    TypeError: last_name must be a string
+
+    >>> say_my_name()
+    Traceback (most recent call last):
+    TypeError: say_my_name() missing 1 required positional argument: 'first_name'
