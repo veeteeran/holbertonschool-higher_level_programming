@@ -38,4 +38,7 @@ def matrix_divided(matrix, div):
                           of integers/floats")
         count += 1
 
-    return list(map(lambda x: list(map(lambda i: round(i / div, 2), x)), matrix))
+    result = list(map(lambda x:
+                      list(map(lambda i: round(i / div, 2), x)), matrix))
+
+    return result
