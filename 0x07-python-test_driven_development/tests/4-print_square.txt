@@ -20,7 +20,6 @@ Numbers
     Prints a newline if size is 0
 
     >>> print_square(0)
-    <BLANKLINE>
 
 ::
     Size can only be ints greater than 0
