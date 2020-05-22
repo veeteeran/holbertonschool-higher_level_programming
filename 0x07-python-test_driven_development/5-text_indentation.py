@@ -17,9 +17,17 @@ def text_indentation(text):
     characters = ['.', '?', ':']
     start = 0
     end = 0
+    in_string = False
     for char in text:
+        if not char.isspace():
+            in_string = True
         end += 1
+        if char == " " and not in_string:
+            start += 1
+
         if char in characters:
             print(text[start:end])
             print()
-            start = end + 1
+            in_string = False
+            start = end
+    print(text[start:end], end="")

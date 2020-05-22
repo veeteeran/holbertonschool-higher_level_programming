@@ -42,6 +42,34 @@
     <BLANKLINE>
     Quae animi affectio suum cuique tribuens atque hanc, quam dico.
     <BLANKLINE>
+    Utinam quidem dicerent alium alio beatiorem! Iam ruinas videres
+
+::
+
+    >>> text_indentation("Hello Holberton")
+    Hello Holberton
+
+    >>> text_indentation("spaces at the end?    What's this?")
+    spaces at the end?
+    <BLANKLINE>
+    What's this?
+    <BLANKLINE>
+
+    >>> text_indentation("spaces at the end?:What's this.")
+    spaces at the end?
+    <BLANKLINE>
+    :
+    <BLANKLINE>
+    What's this.
+    <BLANKLINE>
+
+::
+
+    >>> text_indentation("   spaces at the end? What's this.")
+    spaces at the end?
+    <BLANKLINE>
+    What's this.
+    <BLANKLINE>
 
 ::
 
@@ -75,5 +103,11 @@ text must be a string
 
     >>> tinydict = {'name': 'john','code':6734, 'dept': 'sales'}
     >>> text_indentation(tinydict)
+    Traceback (most recent call last):
+    TypeError: text must be a string
+
+::
+
+    >>> text_indentation(None)
     Traceback (most recent call last):
     TypeError: text must be a string
