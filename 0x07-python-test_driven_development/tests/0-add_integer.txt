@@ -95,3 +95,8 @@ The first argument must be an int or float
     >>> add_integer("9", "1")
     Traceback (most recent call last):
     TypeError: a must be an integer
+
+::
+    >>> add_integer(None, 394820)
+    Traceback (most recent call last):
+    TypeError: a must be an integer
