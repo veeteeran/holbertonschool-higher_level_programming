@@ -15,6 +15,7 @@ class TestMaxInteger(unittest.TestCase):
         self.assertEqual(max_integer([]), None)
         self.assertEqual(max_integer([1, 8, 4, 6, 3, 8]), 8)
         self.assertEqual(max_integer([-1, -3, -4, -2]), -1)
+        self.assertEqual(max_integer([5555]), 5)
 
     def test_none(self):
         self.assertIsNone(max_integer())
