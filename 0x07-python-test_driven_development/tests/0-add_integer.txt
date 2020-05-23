@@ -106,3 +106,9 @@ The first argument must be an int or float
     >>> add_integer([3, 4], 5)
     Traceback (most recent call last):
     TypeError: a must be an integer
+
+::
+
+    >>> add_integer(float('nan'))
+    Traceback (most recent call last):
+    ValueError: cannot convert float NaN to integer
