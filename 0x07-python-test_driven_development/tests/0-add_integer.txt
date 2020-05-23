@@ -23,6 +23,18 @@ It casts floats to ints
     >>> add_integer(100.3, -2)
     98
 
+::
+    >>> add_integer(5.6689, 6.211)
+    11
+
+::
+    >>> add_integer(9, 1.234)
+    10
+
+::
+    >>> add_integer(123.45)
+    221
+
 Non-Numbers
 ===========
 
@@ -64,3 +76,8 @@ The first argument must be an int or float
     >>> add_integer(float('inf'))
     Traceback (most recent call last):
     OverflowError: cannot convert float infinity to integer
+
+::
+    >>> add_integer("Holberton", "School")
+    Traceback (most recent call last):
+    TypeError: a must be an integer
