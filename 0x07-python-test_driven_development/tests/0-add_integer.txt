@@ -81,3 +81,17 @@ The first argument must be an int or float
     >>> add_integer("Holberton", "School")
     Traceback (most recent call last):
     TypeError: a must be an integer
+
+    >>> add_integer("96", 12)
+    Traceback (most recent call last):
+    TypeError: a must be an integer
+
+::
+    >>> add_integer(4, "28")
+    Traceback (most recent call last):
+    TypeError: b must be an integer
+
+::
+    >>> add_integer("9", "1")
+    Traceback (most recent call last):
+    TypeError: a must be an integer
