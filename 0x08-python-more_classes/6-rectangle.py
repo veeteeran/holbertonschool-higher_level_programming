@@ -90,7 +90,7 @@ class Rectangle:
         """Return repr of rectangle"""
         width = str(self.__width)
         height = str(self.__height)
-        return 'Rectangle(' + width + ',' + height + ')'
+        return 'Rectangle(' + width + ', ' + height + ')'
 
     def __del__(self):
         """Detect when rectangle deleted and print message"""
