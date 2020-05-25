@@ -85,4 +85,4 @@ class Rectangle:
         """Return repr of rectangle"""
         width = str(self.__width)
         height = str(self.__height)
-        return 'Rectangle(' + width + ',' + height + ')'
+        return 'Rectangle(' + width + ', ' + height + ')'
