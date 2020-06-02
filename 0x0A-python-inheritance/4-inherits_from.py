@@ -1,4 +1,7 @@
 #!/usr/bin/python3
+"""Docstring for inherits from"""
+
+
 def inherits_from(obj, a_class):
     """
     Returns True if the object is an instance of a class, otherwise False
