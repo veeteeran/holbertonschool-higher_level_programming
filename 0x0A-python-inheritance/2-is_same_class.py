@@ -1,4 +1,7 @@
 #!/usr/bin/python3
+"""Docstring for is_same_class"""
+
+
 def is_same_class(obj, a_class):
     """
     True if the object is exactly an instance of specified class,
