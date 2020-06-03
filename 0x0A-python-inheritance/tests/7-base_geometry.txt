@@ -4,9 +4,33 @@
 
 ``integer_validator()`` checks for ints > 0
 
+    >>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
+
+    >>> mod_docstring = __import__('7-base_geometry').__doc__
+    >>> print(len(mod_docstring) > 0)
+    True
+
 ::
 
-    >>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
+
+    >>> func_docstring = __import__('7-base_geometry').BaseGeometry.integer_validator.__doc__
+    >>> print(len(func_docstring) > 0)
+    True
+
+::
+
+
+    >>> class_docstring = __import__('7-base_geometry').BaseGeometry.__doc__
+    >>> print(len(class_docstring) > 0)
+    True
+::    
+
+    >>> mod_docstring = __import__('7-base_geometry').__doc__
+    >>> print(len(mod_docstring) > 0)
+    True
+
+::
+
     >>> bg = BaseGeometry()
     >>> bg.integer_validator("my_int", 12)
     >>> bg.integer_validator("width", 89)
