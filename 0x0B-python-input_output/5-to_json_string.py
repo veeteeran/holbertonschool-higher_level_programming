@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 """Docstring for to_json_string"""
+import json
 
 
 def to_json_string(my_obj):
-    import json
     """
     Returns the JSON representation of an object (string)
 
