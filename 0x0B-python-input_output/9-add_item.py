@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+"""Docstring for add_item"""
 from sys import argv
 
 
