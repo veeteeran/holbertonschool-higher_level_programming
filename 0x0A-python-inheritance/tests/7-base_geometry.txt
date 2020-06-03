@@ -23,17 +23,14 @@
     >>> class_docstring = __import__('7-base_geometry').BaseGeometry.__doc__
     >>> print(len(class_docstring) > 0)
     True
+
 ::    
 
-    >>> mod_docstring = __import__('7-base_geometry').__doc__
-    >>> print(len(mod_docstring) > 0)
-    True
-
-::
 
     >>> bg = BaseGeometry()
     >>> bg.integer_validator("my_int", 12)
     >>> bg.integer_validator("width", 89)
+    >>> bg.integer_validator("big_num", 1234567890)
 
 ::
 
