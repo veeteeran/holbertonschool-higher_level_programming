@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 from sys import argv
-import os
 
 
 save_to_json_file = __import__('7-save_to_json_file').save_to_json_file
