@@ -14,15 +14,6 @@ class Square(Rectangle):
             Parameter:
                 size: size of sides of Square object
         """
-        self.__width = size
-        self.__height = size
         self.__size = size
-        self.integer_validator = ("size", self.__size)
-
-    def area(self):
-        """Return area of Square object"""
-        return self.__size ** 2
-
-    def __str__(self):
-        """Print description of Square"""
-        return "[Rectangle] {:d}/{:d}".format(self.__width, self.__height)
+        self.integer_validator("size", size)
+        super().__init__(size, size)
