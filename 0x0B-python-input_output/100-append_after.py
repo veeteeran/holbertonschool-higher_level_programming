@@ -12,6 +12,9 @@ def append_after(filename="", search_string="", new_string=""):
             search_string: insert after this string
             new_string: string to insert
     """
+    if filename == "" or search_string == "" or new_string == "":
+        return filename
+
     with open(filename, 'r', encoding='utf-8') as f:
         my_list = list(f)
 
