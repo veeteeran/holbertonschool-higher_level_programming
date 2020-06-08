@@ -3,6 +3,8 @@
 import unittest
 from models.base import Base
 from models.rectangle import Rectangle
+import io
+from contextlib import redirect_stdout
 
 
 class TestBaseClass(unittest.TestCase):
@@ -29,6 +31,12 @@ class TestBaseClass(unittest.TestCase):
     def tearDown(self):
         """Unit test tear down"""
         print('tearDown')
+        del self.r1
+        del self.r2
+        del self.r3
+        del self.r4
+        del self.r5
+        del self.r6
 
     def test_init(self):
         """Test for init method"""
@@ -52,12 +60,6 @@ class TestBaseClass(unittest.TestCase):
         self.assertEqual(self.r2.height, 10)
         self.assertEqual(self.r2.x, 0)
         self.assertEqual(self.r2.y, 0)
-        with self.assertRaises(TypeError):
-            self.r2.__init__("string", 4)
-        with self.assertRaises(TypeError):
-            self.r2.__init__([1, 2, 3], 4)
-        with self.assertRaises(TypeError):
-            self.r2.__init__()
 
         # r3 tests
         self.assertIsNotNone(self.r3)
@@ -68,46 +70,32 @@ class TestBaseClass(unittest.TestCase):
         self.assertEqual(self.r3.height, 5)
         self.assertEqual(self.r3.x, 0)
         self.assertEqual(self.r3.y, 0)
-        with self.assertRaises(TypeError):
-            self.r3.__init__(3, True)
-        with self.assertRaises(TypeError):
-            self.r3.__init__(3, (1, ))
 
         # r4 tests
         self.assertIsNotNone(self.r4)
         self.assertIsInstance(self.r4, Base)
         self.assertIs(type(self.r4), Rectangle)
-        self.assertEqual(self.r4.id, 3)
+        self.assertEqual(self.r4.id, 12)
         self.assertEqual(self.r4.width, 9)
         self.assertEqual(self.r4.height, 6)
         self.assertEqual(self.r4.x, 4)
         self.assertEqual(self.r4.y, 3)
 
-        with self.assertRaises(ValueError):
-            self.r4.__init__(0, 4)
-        with self.assertRaises(ValueError):
-            self.r4.__init__(-1, 4)
-
         # r5 tests
         self.assertIsNotNone(self.r5)
         self.assertIsInstance(self.r5, Base)
         self.assertIs(type(self.r5), Rectangle)
-        self.assertEqual(self.r5.id, 4)
+        self.assertEqual(self.r5.id, 1)
         self.assertEqual(self.r5.width, 1)
         self.assertEqual(self.r5.height, 6)
         self.assertEqual(self.r5.x, 1)
         self.assertEqual(self.r5.y, 2)
 
-        with self.assertRaises(ValueError):
-            self.r5.__init__(1, 0)
-        with self.assertRaises(ValueError):
-            self.r5.__init__(1, -6)
-
         # r6 tests
         self.assertIsNotNone(self.r6)
         self.assertIsInstance(self.r6, Base)
         self.assertIs(type(self.r6), Rectangle)
-        self.assertEqual(self.r6.id, 5)
+        self.assertEqual(self.r6.id, 3)
         self.assertEqual(self.r6.width, 9)
         self.assertEqual(self.r6.height, 6)
         self.assertEqual(self.r6.x, 0)
@@ -115,10 +103,176 @@ class TestBaseClass(unittest.TestCase):
 
     def test_validate_attributes(self):
         """Test exceptions are raised when attribute invalid"""
+        print("test_validate_attributes")
+        # r2 tests
+        with self.assertRaises(TypeError):
+            self.r2.__init__("string", 4)
+        with self.assertRaises(TypeError):
+            self.r2.__init__([1, 2, 3], 4)
+        with self.assertRaises(TypeError):
+            self.r2.__init__()
 
+        # r3 tests
+        with self.assertRaises(TypeError):
+            self.r3.__init__(3, True)
+        with self.assertRaises(TypeError):
+            self.r3.__init__(3, (1, ))
 
+        # r4 tests
+        with self.assertRaises(ValueError):
+            self.r4.__init__(0, 4)
+        with self.assertRaises(ValueError):
+            self.r4.__init__(-1, 4)
+
+        # r5 tests
+        with self.assertRaises(ValueError):
+            self.r5.__init__(1, 0)
+        with self.assertRaises(ValueError):
+            self.r5.__init__(1, -6)
+
+        # r6 tests
         with self.assertRaises(ValueError):
             self.r6.__init__(9, 6, -3)
 
         with self.assertRaises(ValueError):
             self.r6.__init__(9, 6, 0, -8)
+
+    def test_area(self):
+        """Test for area method"""
+        print("test_area")
+        # r1 tests
+        self.assertEqual(self.r1.area(), 20)
+
+        # r2 tests
+        self.assertEqual(self.r2.area(), 20)
+
+        # r3 tests
+        self.assertEqual(self.r3.area(), 15)
+
+        # r4 tests
+        self.assertEqual(self.r4.area(), 54)
+
+        # r5 tests
+        self.assertEqual(self.r5.area(), 6)
+
+        # r6 tests
+        self.assertEqual(self.r6.area(), 54)
+
+    def test_display(self):
+        """Test for display method"""
+        print("test_display")
+        f = io.StringIO()
+        with redirect_stdout(f):
+            self.r1.display()
+        output = f.getvalue()
+        self.assertEqual(output, f.getvalue())
+
+    def test_str(self):
+        """Test for __str__ method"""
+        print("test_str")
+        self.assertEqual(self.r1.__str__(), "[Rectangle] (1) 0/0 - 10/2")
+        self.assertEqual(self.r2.__str__(), "[Rectangle] (2) 0/0 - 2/10")
+        self.assertEqual(self.r3.__str__(), "[Rectangle] (12) 0/0 - 3/5")
+        self.assertEqual(self.r4.__str__(), "[Rectangle] (12) 4/3 - 9/6")
+        self.assertEqual(self.r5.__str__(), "[Rectangle] (1) 1/2 - 1/6")
+        self.assertEqual(self.r6.__str__(), "[Rectangle] (3) 0/8 - 9/6")
+
+    def test_update_args(self):
+        """Test for update args method"""
+        print("test_update_args")
+        self.assertEqual(self.r1.__str__(), "[Rectangle] (1) 0/0 - 10/2")
+        self.r1.update(89)
+        self.assertEqual(self.r1.__str__(), "[Rectangle] (89) 0/0 - 10/2")
+        self.r1.update(89, 2)
+        self.assertEqual(self.r1.__str__(), "[Rectangle] (89) 0/0 - 2/2")
+        self.r1.update(89, 2, 3)
+        self.assertEqual(self.r1.__str__(), "[Rectangle] (89) 0/0 - 2/3")
+        self.r1.update(89, 2, 3, 4)
+        self.assertEqual(self.r1.__str__(), "[Rectangle] (89) 4/0 - 2/3")
+        self.r1.update(89, 2, 3, 4, 5)
+        self.assertEqual(self.r1.__str__(), "[Rectangle] (89) 4/5 - 2/3")
+
+    def test_update_kwargs(self):
+        """Test for update kwargs method"""
+        print("test_update_kwargs")
+        self.assertEqual(self.r1.__str__(), "[Rectangle] (1) 0/0 - 10/2")
+        self.r1.update(height=1)
+        self.assertEqual(self.r1.__str__(), "[Rectangle] (1) 0/0 - 10/1")
+        self.r1.update(width=1, x=2)
+        self.assertEqual(self.r1.__str__(), "[Rectangle] (1) 2/0 - 1/1")
+        self.r1.update(y=1, width=2, x=3, id=89)
+        self.assertEqual(self.r1.__str__(), "[Rectangle] (89) 3/1 - 2/1")
+        self.r1.update(x=1, height=2, y=3, width=4)
+        self.assertEqual(self.r1.__str__(), "[Rectangle] (89) 1/3 - 4/2")
+
+    def test_module_docstring(self):
+        """Module Docstring Check"""
+        print("test_module_docstring")
+        result = len(__import__('models.rectangle').__doc__)
+        self.assertTrue(result > 0, True)
+
+    def test_class_docstring(self):
+        """Class Docstring Test"""
+        print("test_class_docstring")
+        result = len(Rectangle.__doc__)
+        self.assertTrue(result > 0, True)
+
+    def test_init_docstring(self):
+        """init Docstring Test"""
+        print("test_init_docstring")
+        result = len(self.__init__.__doc__)
+        self.assertTrue(result > 0, True)
+
+    def test_width_getter_docstring(self):
+        """width_getter Docstring Test"""
+        print("test_width_getter_docstring")
+        result = len(Rectangle.width.__doc__)
+        self.assertTrue(result > 0, True)
+
+    def test_height_getter_docstring(self):
+        """height_getter Docstring Test"""
+        print("test_height_getter_docstring")
+        result = len(Rectangle.height.__doc__)
+        self.assertTrue(result > 0, True)
+
+    def test_x_getter_docstring(self):
+        """x_getter Docstring Test"""
+        print("test_x_getter_docstring")
+        result = len(Rectangle.x.__doc__)
+        self.assertTrue(result > 0, True)
+
+    def test_y_getter_docstring(self):
+        """y_getter Docstring Test"""
+        print("test_y_getter_docstring")
+        result = len(Rectangle.y.__doc__)
+        self.assertTrue(result > 0, True)
+
+    def test_area_docstring(self):
+        """area Docstring Test"""
+        print("test_area_docstring")
+        result = len(Rectangle.area.__doc__)
+        self.assertTrue(result > 0, True)
+
+    def test_display_docstring(self):
+        """display Docstring Test"""
+        print("test_display_docstring")
+        result = len(Rectangle.display.__doc__)
+        self.assertTrue(result > 0, True)
+
+    def test_str_docstring(self):
+        """str Docstring Test"""
+        print("test_str_docstring")
+        result = len(Rectangle.__str__.__doc__)
+        self.assertTrue(result > 0, True)
+
+    def test_update_docstring(self):
+        """update Docstring Test"""
+        print("test_update_docstring")
+        result = len(Rectangle.update.__doc__)
+        self.assertTrue(result > 0, True)
+
+    def test_to_dictionary_docstring(self):
+        """to_dictionary Docstring Test"""
+        print("test_to_dictionary_docstring")
+        result = len(Rectangle.to_dictionary.__doc__)
+        self.assertTrue(result > 0, True)
