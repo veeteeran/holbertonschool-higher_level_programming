@@ -56,9 +56,9 @@ class Square(Rectangle):
         elif 'id' in kwargs:
             self.id = kwargs['id']
         if my_list[1] is not None:
-            self.__size = args[1]
+            self.size = args[1]
         elif 'size' in kwargs:
-            self.__size = kwargs['size']
+            self.size = kwargs['size']
         if my_list[2] is not None:
             self.x = args[2]
         elif 'x' in kwargs:
