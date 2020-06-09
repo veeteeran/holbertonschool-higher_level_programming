@@ -6,7 +6,6 @@ import json
 class Base:
     """The Base class"""
     __nb_objects = 0
-    __id_list = [0]
 
     def __init__(self, id=None):
         """
@@ -15,13 +14,11 @@ class Base:
             Parameter:
                 id: an id
         """
-        if id is None or id in Base.__id_list:
-            while Base.__nb_objects in Base.__id_list:
-                Base.__nb_objects += 1
+        if id is None:
+            Base.__nb_objects += 1
             self.id = Base.__nb_objects
         else:
             self.id = id
-        Base.__id_list.append(self.id)
 
     @staticmethod
     def to_json_string(list_dictionaries):
@@ -31,7 +28,7 @@ class Base:
             Parameter:
                 list_dictionaries: a list of dictionaries
         """
-        if list_dictionaries is None or list_dictionaries == []:
+        if list_dictionaries is None or type(list_dictionaries) is not list:
             return "[]"
         return json.dumps(list_dictionaries)
 
@@ -45,16 +42,16 @@ class Base:
         """
         my_str = ""
         new_list = []
-        for obj in list_objs:
-            new_list.append(obj.to_dictionary())
-
-        new_str = (cls.to_json_string(new_list))
 
         filename = "{}.json".format(cls.__name__)
         with open(filename, 'w', encoding='utf-8') as f:
             if list_objs is None:
                 f.write("[]")
             else:
+                for obj in list_objs:
+                    new_list.append(obj.to_dictionary())
+
+                new_str = (cls.to_json_string(new_list))
                 f.write(new_str)
 
     @staticmethod
@@ -99,3 +96,11 @@ class Base:
             return my_list
         except:
             return []
+
+    def __del__(self):
+        """Detect when object deleted"""
+
+        if Base.__nb_objects <= 0:
+            Base.__nb_objects = 0
+        else:
+            Base.__nb_objects -= 1
