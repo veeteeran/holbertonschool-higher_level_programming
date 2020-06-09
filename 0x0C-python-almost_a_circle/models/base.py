@@ -28,10 +28,10 @@ class Base:
             Parameter:
                 list_dictionaries: a list of dictionaries
         """
-        if list_dictionaries is not None:
-            if type(list_dictionaries) is list:
-                return json.dumps(list_dictionaries)
-        return "[]"
+        if list_dictionaries is None:
+            if type(list_dictionaries) is not list:
+                return "[]"
+        return json.dumps(list_dictionaries)
 
     @classmethod
     def save_to_file(cls, list_objs):
