@@ -8,7 +8,7 @@ class Square(Rectangle):
     def __init__(self, size, x=0, y=0, id=None):
         """
         Init method for square
-        
+
             Parameters:
                 size: size of sides of square
                 x: x position
@@ -20,8 +20,8 @@ class Square(Rectangle):
 
     def __str__(self):
         """Overload of __str__ method"""
-        return "[Square] ({:d}) {:d}/{:d} - {:d}".format(self.id,
-                   self.x, self.y, self.__size)
+        string = "[Square] ({:d}) {:d}/{:d} - {:d}"
+        return string.format(self.id, self.x, self.y, self.__size)
 
     @property
     def size(self):
@@ -53,19 +53,19 @@ class Square(Rectangle):
         for i in range(len(args)):
             my_list[i] = args[i]
 
-        if my_list[0] != None:
+        if my_list[0] is not None:
             self.id = args[0]
         elif 'id' in kwargs:
             self.id = kwargs['id']
-        if my_list[1] != None:
+        if my_list[1] is not None:
             self.__size = args[1]
         elif 'size' in kwargs:
             self.__size = kwargs['size']
-        if my_list[2] != None:
+        if my_list[2] is not None:
             self.x = args[2]
         elif 'x' in kwargs:
             self.x = kwargs['x']
-        if my_list[3] != None:
+        if my_list[3] is not None:
             self.y = args[3]
         elif 'y' in kwargs:
             self.y = kwargs['y']
@@ -74,12 +74,12 @@ class Square(Rectangle):
         """Returns the dictionary representation of a Square"""
         new_dict = {}
         for key in self.__dict__.keys():
-             if 'size' in key:
-                 new_dict['size'] = self.__dict__[key]
-             elif 'x' in key:
-                 new_dict['x'] = self.__dict__[key]
-             elif 'y' in key:
-                 new_dict['y'] = self.__dict__[key]
-             elif 'id' in key:
-                 new_dict['id'] = self.__dict__[key]
+            if 'size' in key:
+                new_dict['size'] = self.__dict__[key]
+            elif 'x' in key:
+                new_dict['x'] = self.__dict__[key]
+            elif 'y' in key:
+                new_dict['y'] = self.__dict__[key]
+            elif 'id' in key:
+                new_dict['id'] = self.__dict__[key]
         return new_dict
