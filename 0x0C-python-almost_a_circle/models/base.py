@@ -95,7 +95,7 @@ class Base:
 
             return my_list
         except:
-            return []
+            pass
 
     def __del__(self):
         """Detect when object deleted"""
