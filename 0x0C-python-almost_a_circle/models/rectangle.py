@@ -121,8 +121,8 @@ class Rectangle(Base):
 
     def __str__(self):
         """Override __str__ method"""
-        return "[Rectangle] ({:d}) {:d}/{:d} - {:d}/{:d}".format(self.id,
-                   self.__x, self.__y, self.__width, self.__height)
+        return "[Rectangle] ({:d}) {:d}/{:d} - {:d}/{:d}".format
+        (self.id, self.__x, self.__y, self.__width, self.__height)
 
     def update(self, *args, **kwargs):
         """Assigns an argument to each Rectangle attribute"""
@@ -131,23 +131,23 @@ class Rectangle(Base):
         for i in range(len(args)):
             my_list[i] = args[i]
 
-        if my_list[0] != None:
+        if my_list[0] is not None:
             self.id = args[0]
         elif 'id' in kwargs:
             self.id = kwargs['id']
-        if my_list[1] != None:
+        if my_list[1] is not None:
             self.__width = args[1]
         elif 'width' in kwargs:
             self.__width = kwargs['width']
-        if my_list[2] != None:
+        if my_list[2] is not None:
             self.__height = args[2]
         elif 'height' in kwargs:
             self.__height = kwargs['height']
-        if my_list[3] != None:
+        if my_list[3] is not None:
             self.__x = args[3]
         elif 'x' in kwargs:
             self.__x = kwargs['x']
-        if my_list[4] != None:
+        if my_list[4] is not None:
             self.__y = args[4]
         elif 'y' in kwargs:
             self.__y = kwargs['y']
@@ -156,14 +156,14 @@ class Rectangle(Base):
         """Returns the dictionary representation of a Rectangle"""
         new_dict = {}
         for key in self.__dict__.keys():
-             if 'width' in key:
-                 new_dict['width'] = self.__dict__[key]
-             elif 'height' in key:
-                 new_dict['height'] = self.__dict__[key]
-             elif 'x' in key:
-                 new_dict['x'] = self.__dict__[key]
-             elif 'y' in key:
-                 new_dict['y'] = self.__dict__[key]
-             elif 'id' in key:
-                 new_dict['id'] = self.__dict__[key]
+            if 'width' in key:
+                new_dict['width'] = self.__dict__[key]
+            elif 'height' in key:
+                new_dict['height'] = self.__dict__[key]
+            elif 'x' in key:
+                new_dict['x'] = self.__dict__[key]
+            elif 'y' in key:
+                new_dict['y'] = self.__dict__[key]
+            elif 'id' in key:
+                new_dict['id'] = self.__dict__[key]
         return new_dict
