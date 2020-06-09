@@ -15,18 +15,17 @@ class Square(Rectangle):
                 y: position
                 id: id of object
         """
-        self.size = size
         super().__init__(size, size, x, y, id)
 
     def __str__(self):
         """Overload of __str__ method"""
         string = "[Square] ({:d}) {:d}/{:d} - {:d}"
-        return string.format(self.id, self.x, self.y, self.__size)
+        return string.format(self.id, self.x, self.y, self.width)
 
     @property
     def size(self):
         """getter method for size"""
-        return self.__size
+        return self.width
 
     @size.setter
     def size(self, value):
@@ -42,9 +41,8 @@ class Square(Rectangle):
         if value <= 0:
             raise ValueError("width must be > 0")
 
-        self.__width = value
-        self.__height = value
-        self.__size = value
+        self.width = value
+        self.height = value
 
     def update(self, *args, **kwargs):
         """Assigns an argument to each Square attribute"""
