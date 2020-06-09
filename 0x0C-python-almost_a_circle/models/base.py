@@ -45,13 +45,13 @@ class Base:
 
         filename = "{}.json".format(cls.__name__)
         with open(filename, 'w', encoding='utf-8') as f:
-            if list_objs is None:
+            if list_objs is None and type(list_objs) is not list:
                 f.write("[]")
             else:
                 for obj in list_objs:
                     new_list.append(obj.to_dictionary())
 
-                new_str = (cls.to_json_string(new_list))
+                new_str = cls.to_json_string(new_list)
                 f.write(new_str)
 
     @staticmethod
