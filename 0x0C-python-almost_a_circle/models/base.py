@@ -92,7 +92,7 @@ class Base:
             for d in my_dict:
                 obj = cls.create(**d)
                 my_list.append(obj)
-        except:
+        except Exception:
             pass
 
         return my_list
