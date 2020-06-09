@@ -80,8 +80,13 @@ class Base:
         if type(dictionary) is not dict:
             return None
 
-        obj = cls(1, 1)
-        obj.update(**dictionary)
+        if cls.__name__ == "Rectangle": 
+            obj = cls(1, 1)
+            obj.update(**dictionary)
+        elif cls.__name__ == "Square":
+            obj = cls(1)
+            obj.update(**dictionary)
+
         return obj
 
     @classmethod
