@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Docstring for Base class"""
 import json
+import csv
 
 
 class Base:
@@ -28,8 +29,8 @@ class Base:
             Parameter:
                 list_dictionaries: a list of dictionaries
         """
-        if list_dictionaries is None or list_dictionaries == []:
-            return "[]"
+        if list_dictionaries is None:
+            return json.dumps([])
         return json.dumps(list_dictionaries)
 
     @classmethod
@@ -96,6 +97,27 @@ class Base:
             return my_list
         except:
             return []
+
+    @classmethod
+    def save_to_file_csv(cls, list_objs):
+        """Serialize python object to csv
+
+            Parameter:
+                list_objs: a list of instances that inherits from Base
+        """
+        my_str = ""
+        new_list = []
+        filename = "{}.csv".format(cls.__name__)
+
+        with open(filename, 'w', encoding='utf-8') as f:
+            if list_objs is None and type(list_objs) is not list:
+                f.write("[]")
+            else:
+                for obj in list_objs:
+                    new_list.append(obj.to_dictionary())
+
+                new_str = cls.to_json_string(new_list)
+                f.write(new_str)
 
     def __del__(self):
         """Detect when object deleted"""
