@@ -77,6 +77,9 @@ class Base:
                 dictionary: Can be thought of as a double pointer to
                 a dictionary
         """
+        if type(dictionary) is not dict:
+            return None
+
         obj = cls(1, 1)
         obj.update(**dictionary)
         return obj
