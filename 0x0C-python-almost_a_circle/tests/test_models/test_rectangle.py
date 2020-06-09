@@ -33,23 +33,23 @@ class TestBaseClass(unittest.TestCase):
     def tearDown(self):
         """Unit test tear down"""
         print('tearDown')
-        del self.r1
-        del self.r2
-        del self.r3
-        del self.r4
-        del self.r5
-        del self.r6
-        del self.r7
-        del self.r8
+#        del self.r1
+#        del self.r2
+#        del self.r3
+#        del self.r4
+#        del self.r5
+#        del self.r6
+#        del self.r7
+#        del self.r8
 
-    def test_init(self):
+    def test_a_init(self):
         """Test for init method"""
         print("test_init")
         # r1 tests
         self.assertIsNotNone(self.r1)
         self.assertIsInstance(self.r1, Base)
         self.assertIs(type(self.r1), Rectangle)
-        self.assertEqual(self.r1.id, 1)
+        self.assertEqual(self.r1.id, 105)
         self.assertEqual(self.r1.width, 10)
         self.assertEqual(self.r1.height, 2)
         self.assertEqual(self.r1.x, 0)
@@ -59,7 +59,7 @@ class TestBaseClass(unittest.TestCase):
         self.assertIsNotNone(self.r2)
         self.assertIsInstance(self.r2, Base)
         self.assertIs(type(self.r2), Rectangle)
-        self.assertEqual(self.r2.id, 2)
+        self.assertEqual(self.r2.id, 106)
         self.assertEqual(self.r2.width, 2)
         self.assertEqual(self.r2.height, 10)
         self.assertEqual(self.r2.x, 0)
@@ -99,13 +99,13 @@ class TestBaseClass(unittest.TestCase):
         self.assertIsNotNone(self.r6)
         self.assertIsInstance(self.r6, Base)
         self.assertIs(type(self.r6), Rectangle)
-        self.assertEqual(self.r6.id, 3)
+        self.assertEqual(self.r6.id, 107)
         self.assertEqual(self.r6.width, 9)
         self.assertEqual(self.r6.height, 6)
         self.assertEqual(self.r6.x, 0)
         self.assertEqual(self.r6.y, 8)
 
-    def test_validate_attributes(self):
+    def test_b_validate_attributes(self):
         """Test exceptions are raised when attribute invalid"""
         print("test_validate_attributes")
         # r2 tests
@@ -141,7 +141,7 @@ class TestBaseClass(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.r6.__init__(9, 6, 0, -8)
 
-    def test_area(self):
+    def test_c_area(self):
         """Test for area method"""
         print("test_area")
         # r1 tests
@@ -162,7 +162,7 @@ class TestBaseClass(unittest.TestCase):
         # r6 tests
         self.assertEqual(self.r6.area(), 54)
 
-    def test_display(self):
+    def test_d_display(self):
         """Test for display method"""
         print("test_display")
         f = io.StringIO()
@@ -171,20 +171,20 @@ class TestBaseClass(unittest.TestCase):
         output = f.getvalue()
         self.assertEqual(output, f.getvalue())
 
-    def test_str(self):
+    def test_e_str(self):
         """Test for __str__ method"""
         print("test_str")
-        self.assertEqual(self.r1.__str__(), "[Rectangle] (1) 0/0 - 10/2")
-        self.assertEqual(self.r2.__str__(), "[Rectangle] (2) 0/0 - 2/10")
+        self.assertEqual(self.r1.__str__(), "[Rectangle] (140) 0/0 - 10/2")
+        self.assertEqual(self.r2.__str__(), "[Rectangle] (141) 0/0 - 2/10")
         self.assertEqual(self.r3.__str__(), "[Rectangle] (12) 0/0 - 3/5")
         self.assertEqual(self.r4.__str__(), "[Rectangle] (12) 4/3 - 9/6")
         self.assertEqual(self.r5.__str__(), "[Rectangle] (1) 1/2 - 1/6")
-        self.assertEqual(self.r6.__str__(), "[Rectangle] (3) 0/8 - 9/6")
+        self.assertEqual(self.r6.__str__(), "[Rectangle] (142) 0/8 - 9/6")
 
-    def test_update_args(self):
+    def test_f_update_args(self):
         """Test for update args method"""
         print("test_update_args")
-        self.assertEqual(self.r1.__str__(), "[Rectangle] (1) 0/0 - 10/2")
+        self.assertEqual(self.r1.__str__(), "[Rectangle] (145) 0/0 - 10/2")
         self.r1.update(89)
         self.assertEqual(self.r1.__str__(), "[Rectangle] (89) 0/0 - 10/2")
         self.r1.update(89, 2)
@@ -196,31 +196,31 @@ class TestBaseClass(unittest.TestCase):
         self.r1.update(89, 2, 3, 4, 5)
         self.assertEqual(self.r1.__str__(), "[Rectangle] (89) 4/5 - 2/3")
 
-    def test_update_kwargs(self):
+    def test_g_update_kwargs(self):
         """Test for update kwargs method"""
         print("test_update_kwargs")
-        self.assertEqual(self.r1.__str__(), "[Rectangle] (1) 0/0 - 10/2")
+        self.assertEqual(self.r1.__str__(), "[Rectangle] (150) 0/0 - 10/2")
         self.r1.update(height=1)
-        self.assertEqual(self.r1.__str__(), "[Rectangle] (1) 0/0 - 10/1")
+        self.assertEqual(self.r1.__str__(), "[Rectangle] (150) 0/0 - 10/1")
         self.r1.update(width=1, x=2)
-        self.assertEqual(self.r1.__str__(), "[Rectangle] (1) 2/0 - 1/1")
+        self.assertEqual(self.r1.__str__(), "[Rectangle] (150) 2/0 - 1/1")
         self.r1.update(y=1, width=2, x=3, id=89)
         self.assertEqual(self.r1.__str__(), "[Rectangle] (89) 3/1 - 2/1")
         self.r1.update(x=1, height=2, y=3, width=4)
         self.assertEqual(self.r1.__str__(), "[Rectangle] (89) 1/3 - 4/2")
 
-    def test_to_dictionary(self):
+    def test_h_to_dictionary(self):
         """Test for to_dictionary method"""
         print("test_to_dictionary")
-        self.assertEqual(self.r7.__str__(), "[Rectangle] (4) 1/9 - 10/2")
+        self.assertEqual(self.r7.__str__(), "[Rectangle] (158) 1/9 - 10/2")
         r7_dictionary = self.r7.to_dictionary()
-        expected = {'x': 1, 'y': 9, 'id': 4, 'height': 2, 'width': 10}
+        expected = {'x': 1, 'y': 9, 'id': 158, 'height': 2, 'width': 10}
         self.assertEqual(r7_dictionary, expected)
         self.assertIs(type(r7_dictionary), dict)
 
-        self.assertEqual(self.r8.__str__(), "[Rectangle] (5) 0/0 - 1/1")
+        self.assertEqual(self.r8.__str__(), "[Rectangle] (159) 0/0 - 1/1")
         self.r8.update(**r7_dictionary)
-        self.assertEqual(self.r8.__str__(), "[Rectangle] (4) 1/9 - 10/2")
+        self.assertEqual(self.r8.__str__(), "[Rectangle] (158) 1/9 - 10/2")
         self.assertFalse(self.r7 == self.r8)
 
     def test_module_docstring(self):

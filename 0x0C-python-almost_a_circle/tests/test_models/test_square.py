@@ -37,7 +37,7 @@ class TestBaseClass(unittest.TestCase):
         del self.s4
         del self.s5
 
-    def test_init(self):
+    def test_a_init(self):
         """Test for init method"""
         print("test_init")
         # s1 tests
@@ -45,7 +45,7 @@ class TestBaseClass(unittest.TestCase):
         self.assertIsInstance(self.s1, Base)
         self.assertIsInstance(self.s1, Rectangle)
         self.assertIs(type(self.s1), Square)
-        self.assertEqual(self.s1.id, 1)
+        self.assertEqual(self.s1.id, 205)
         self.assertEqual(self.s1.width, 5)
         self.assertEqual(self.s1.height, 5)
         self.assertEqual(self.s1.x, 0)
@@ -56,7 +56,7 @@ class TestBaseClass(unittest.TestCase):
         self.assertIsInstance(self.s2, Base)
         self.assertIsInstance(self.s2, Rectangle)
         self.assertIs(type(self.s2), Square)
-        self.assertEqual(self.s2.id, 2)
+        self.assertEqual(self.s2.id, 206)
         self.assertEqual(self.s2.width, 2)
         self.assertEqual(self.s2.height, 2)
         self.assertEqual(self.s2.x, 2)
@@ -67,13 +67,13 @@ class TestBaseClass(unittest.TestCase):
         self.assertIsInstance(self.s3, Base)
         self.assertIsInstance(self.s3, Rectangle)
         self.assertIs(type(self.s3), Square)
-        self.assertEqual(self.s3.id, 3)
+        self.assertEqual(self.s3.id, 207)
         self.assertEqual(self.s3.width, 3)
         self.assertEqual(self.s3.height, 3)
         self.assertEqual(self.s3.x, 1)
         self.assertEqual(self.s3.y, 3)
 
-    def test_validate_attributes(self):
+    def test_b_validate_attributes(self):
         """Test exceptions are raised when attribute invalid"""
         print("test_validate_attributes")
 
@@ -97,7 +97,7 @@ class TestBaseClass(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.s3.__init__(-1, 4)
 
-    def test_area(self):
+    def test_c_area(self):
         """Test for area method"""
         print("test_area")
 
@@ -110,7 +110,7 @@ class TestBaseClass(unittest.TestCase):
         # s3 tests
         self.assertEqual(self.s3.area(), 9)
 
-    def test_display(self):
+    def test_d_display(self):
         """Test for display method"""
         print("test_display")
         f = io.StringIO()
@@ -119,17 +119,17 @@ class TestBaseClass(unittest.TestCase):
         output = f.getvalue()
         self.assertEqual(output, f.getvalue())
 
-    def test_str(self):
+    def test_e_str(self):
         """Test for __str__ method"""
         print("test_str")
-        self.assertEqual(self.s1.__str__(), "[Square] (1) 0/0 - 5")
-        self.assertEqual(self.s2.__str__(), "[Square] (2) 2/0 - 2")
-        self.assertEqual(self.s3.__str__(), "[Square] (3) 1/3 - 3")
+        self.assertEqual(self.s1.__str__(), "[Square] (240) 0/0 - 5")
+        self.assertEqual(self.s2.__str__(), "[Square] (241) 2/0 - 2")
+        self.assertEqual(self.s3.__str__(), "[Square] (242) 1/3 - 3")
 
-    def test_update_args(self):
+    def test_f_update_args(self):
         """Test for update args method"""
         print("test_update_args")
-        self.assertEqual(self.s1.__str__(), "[Square] (1) 0/0 - 5")
+        self.assertEqual(self.s1.__str__(), "[Square] (245) 0/0 - 5")
         self.s1.update(10)
         self.assertEqual(self.s1.__str__(), "[Square] (10) 0/0 - 5")
         self.s1.update(1, 2)
@@ -139,28 +139,28 @@ class TestBaseClass(unittest.TestCase):
         self.s1.update(1, 2, 3, 4)
         self.assertEqual(self.s1.__str__(), "[Square] (1) 3/4 - 2")
 
-    def test_update_kwargs(self):
+    def test_g_update_kwargs(self):
         """Test for update kwargs method"""
         print("test_update_kwargs")
         self.s1.update(x=12)
-        self.assertEqual(self.s1.__str__(), "[Square] (1) 12/0 - 5")
+        self.assertEqual(self.s1.__str__(), "[Square] (250) 12/0 - 5")
         self.s1.update(size=7, y=1)
-        self.assertEqual(self.s1.__str__(), "[Square] (1) 12/1 - 7")
+        self.assertEqual(self.s1.__str__(), "[Square] (250) 12/1 - 7")
         self.s1.update(size=7, id=89, y=1)
         self.assertEqual(self.s1.__str__(), "[Square] (89) 12/1 - 7")
 
-    def test_to_dictionary(self):
+    def test_h_to_dictionary(self):
         """Test for to_dictionary method"""
         print("test_to_dictionary")
-        self.assertEqual(self.s4.__str__(), "[Square] (4) 2/1 - 10")
+        self.assertEqual(self.s4.__str__(), "[Square] (258) 2/1 - 10")
         s4_dictionary = self.s4.to_dictionary()
-        expected = {'id': 10, 'x': 2, 'size': 10, 'y': 1}
+        expected = {'id': 258, 'x': 2, 'size': 10, 'y': 1}
         self.assertEqual(s4_dictionary, expected)
         self.assertIs(type(s4_dictionary), dict)
 
-        self.assertEqual(self.s5.__str__(), "[Square] (5) 1/0 - 1")
+        self.assertEqual(self.s5.__str__(), "[Square] (259) 1/0 - 1")
         self.s5.update(**s4_dictionary)
-        self.assertEqual(self.s5.__str__(), "[Square] (10) 2/1 - 10")
+        self.assertEqual(self.s5.__str__(), "[Square] (258) 2/1 - 10")
         self.assertFalse(self.s4 == self.s5)
 
     def test_module_docstring(self):
