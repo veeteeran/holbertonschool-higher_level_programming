@@ -28,7 +28,7 @@ class Base:
             Parameter:
                 list_dictionaries: a list of dictionaries
         """
-        if list_dictionaries is None or type(list_dictionaries) is not list:
+        if list_dictionaries is None and type(list_dictionaries) is not list:
             return "[]"
         return json.dumps(list_dictionaries)
 
