@@ -77,7 +77,11 @@ class Base:
                 dictionary: Can be thought of as a double pointer to
                 a dictionary
         """
-        obj = cls(1, 1)
+        if cls.__name == 'Rectangle':
+            obj = cls(1, 1)
+        elif cls.__name__ == 'Square':
+            obj = cls(1)
+
         obj.update(**dictionary)
         return obj
 
