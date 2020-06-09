@@ -92,10 +92,10 @@ class Base:
             for d in my_dict:
                 obj = cls.create(**d)
                 my_list.append(obj)
-
-            return my_list
         except:
             pass
+
+        return my_list
 
     def __del__(self):
         """Detect when object deleted"""
