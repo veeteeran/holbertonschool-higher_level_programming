@@ -27,6 +27,8 @@ class TestBaseClass(unittest.TestCase):
         self.r4 = Rectangle(9, 6, 4, 3, 12)
         self.r5 = Rectangle(1, 6, 1, 2, 1)
         self.r6 = Rectangle(9, 6, 0, 8)
+        self.r7 = Rectangle(10, 2, 1, 9)
+        self.r8 = Rectangle(1, 1)
 
     def tearDown(self):
         """Unit test tear down"""
@@ -37,6 +39,8 @@ class TestBaseClass(unittest.TestCase):
         del self.r4
         del self.r5
         del self.r6
+        del self.r7
+        del self.r8
 
     def test_init(self):
         """Test for init method"""
@@ -204,6 +208,20 @@ class TestBaseClass(unittest.TestCase):
         self.assertEqual(self.r1.__str__(), "[Rectangle] (89) 3/1 - 2/1")
         self.r1.update(x=1, height=2, y=3, width=4)
         self.assertEqual(self.r1.__str__(), "[Rectangle] (89) 1/3 - 4/2")
+
+    def test_to_dictionary(self):
+        """Test for to_dictionary method"""
+        print("test_to_dictionary")
+        self.assertEqual(self.r7.__str__(), "[Rectangle] (4) 1/9 - 10/2")
+        r7_dictionary = self.r7.to_dictionary()
+        expected = {'x': 1, 'y': 9, 'id': 4, 'height': 2, 'width': 10}
+        self.assertEqual(r7_dictionary, expected)
+        self.assertIs(type(r7_dictionary), dict)
+
+        self.assertEqual(self.r8.__str__(), "[Rectangle] (5) 0/0 - 1/1")
+        self.r8.update(**r7_dictionary)
+        self.assertEqual(self.r8.__str__(), "[Rectangle] (4) 1/9 - 10/2")
+        self.assertFalse(self.r7 == self.r8)
 
     def test_module_docstring(self):
         """Module Docstring Check"""

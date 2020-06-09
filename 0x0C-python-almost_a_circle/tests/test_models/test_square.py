@@ -25,6 +25,8 @@ class TestBaseClass(unittest.TestCase):
         self.s1 = Square(5)
         self.s2 = Square(2, 2)
         self.s3 = Square(3, 1, 3)
+        self.s4 = Square(10, 2, 1)
+        self.s5 = Square(1, 1)
 
     def tearDown(self):
         """Unit test tear down"""
@@ -32,6 +34,8 @@ class TestBaseClass(unittest.TestCase):
         del self.s1
         del self.s2
         del self.s3
+        del self.s4
+        del self.s5
 
     def test_init(self):
         """Test for init method"""
@@ -144,6 +148,20 @@ class TestBaseClass(unittest.TestCase):
         self.assertEqual(self.s1.__str__(), "[Square] (1) 12/1 - 7")
         self.s1.update(size=7, id=89, y=1)
         self.assertEqual(self.s1.__str__(), "[Square] (89) 12/1 - 7")
+
+    def test_to_dictionary(self):
+        """Test for to_dictionary method"""
+        print("test_to_dictionary")
+        self.assertEqual(self.s4.__str__(), "[Square] (4) 2/1 - 10")
+        s4_dictionary = self.s4.to_dictionary()
+        expected = {'id': 10, 'x': 2, 'size': 10, 'y': 1}
+        self.assertEqual(s4_dictionary, expected)
+        self.assertIs(type(s4_dictionary), dict)
+
+        self.assertEqual(self.s5.__str__(), "[Square] (5) 1/0 - 1")
+        self.s5.update(**s4_dictionary)
+        self.assertEqual(self.s5.__str__(), "[Square] (10) 2/1 - 10")
+        self.assertFalse(self.s4 == self.s5)
 
     def test_module_docstring(self):
         """Module Docstring Check"""
