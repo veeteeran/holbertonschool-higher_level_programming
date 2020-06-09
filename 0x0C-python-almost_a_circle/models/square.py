@@ -73,13 +73,10 @@ class Square(Rectangle):
     def to_dictionary(self):
         """Returns the dictionary representation of a Square"""
         new_dict = {}
-        for key in self.__dict__.keys():
-            if 'size' in key:
-                new_dict['size'] = self.__dict__[key]
-            elif 'x' in key:
-                new_dict['x'] = self.__dict__[key]
-            elif 'y' in key:
-                new_dict['y'] = self.__dict__[key]
-            elif 'id' in key:
-                new_dict['id'] = self.__dict__[key]
+
+        new_dict['size'] = self.size
+        new_dict['x'] = self.x
+        new_dict['y'] = self.y
+        new_dict['id'] = self.id
+
         return new_dict
