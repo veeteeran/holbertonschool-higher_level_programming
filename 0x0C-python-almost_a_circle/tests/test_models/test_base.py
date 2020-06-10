@@ -5,6 +5,7 @@ from models.base import Base
 from models.rectangle import Rectangle
 from models.square import Square
 import json
+import pep8
 
 
 class TestBaseClass(unittest.TestCase):
@@ -152,7 +153,7 @@ class TestBaseClass(unittest.TestCase):
 
         Square.save_to_file(list_squares_input)
         s_output = Square.load_from_file()
-#        self.assertEqual(self.s1.__str__(), s_output[0].__str__())
+        self.assertEqual(self.s1.__str__(), s_output[0].__str__())
         self.assertEqual(self.s2.__str__(), s_output[1].__str__())
         self.assertFalse(self.s1 is s_output[0])
         self.assertFalse(self.s2 == s_output[1])
@@ -204,3 +205,10 @@ class TestBaseClass(unittest.TestCase):
         print("test_load_from_file_docstring")
         result = len(Base.load_from_file.__doc__)
         self.assertTrue(result > 0, True)
+
+    def test_pep8_conformance(self):
+        """load_from_file Docstring Test"""
+        print("test_test_pep8_conformance")
+        pep8style = pep8.StyleGuide(quiet=True)
+        result = pep8style.check_files(['models/base.py'])
+        self.assertEqual(result.total_errors, 0)

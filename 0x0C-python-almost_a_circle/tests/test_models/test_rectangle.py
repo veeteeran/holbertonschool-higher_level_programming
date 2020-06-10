@@ -5,6 +5,7 @@ from models.base import Base
 from models.rectangle import Rectangle
 import io
 from contextlib import redirect_stdout
+import pep8
 
 
 class TestBaseClass(unittest.TestCase):
@@ -49,7 +50,7 @@ class TestBaseClass(unittest.TestCase):
         self.assertIsNotNone(self.r1)
         self.assertIsInstance(self.r1, Base)
         self.assertIs(type(self.r1), Rectangle)
-        self.assertEqual(self.r1.id, 105)
+        self.assertEqual(self.r1.id, 112)
         self.assertEqual(self.r1.width, 10)
         self.assertEqual(self.r1.height, 2)
         self.assertEqual(self.r1.x, 0)
@@ -59,7 +60,7 @@ class TestBaseClass(unittest.TestCase):
         self.assertIsNotNone(self.r2)
         self.assertIsInstance(self.r2, Base)
         self.assertIs(type(self.r2), Rectangle)
-        self.assertEqual(self.r2.id, 106)
+        self.assertEqual(self.r2.id, 113)
         self.assertEqual(self.r2.width, 2)
         self.assertEqual(self.r2.height, 10)
         self.assertEqual(self.r2.x, 0)
@@ -99,7 +100,7 @@ class TestBaseClass(unittest.TestCase):
         self.assertIsNotNone(self.r6)
         self.assertIsInstance(self.r6, Base)
         self.assertIs(type(self.r6), Rectangle)
-        self.assertEqual(self.r6.id, 107)
+        self.assertEqual(self.r6.id, 114)
         self.assertEqual(self.r6.width, 9)
         self.assertEqual(self.r6.height, 6)
         self.assertEqual(self.r6.x, 0)
@@ -174,17 +175,17 @@ class TestBaseClass(unittest.TestCase):
     def test_e_str(self):
         """Test for __str__ method"""
         print("test_str")
-        self.assertEqual(self.r1.__str__(), "[Rectangle] (140) 0/0 - 10/2")
-        self.assertEqual(self.r2.__str__(), "[Rectangle] (141) 0/0 - 2/10")
+        self.assertEqual(self.r1.__str__(), "[Rectangle] (147) 0/0 - 10/2")
+        self.assertEqual(self.r2.__str__(), "[Rectangle] (148) 0/0 - 2/10")
         self.assertEqual(self.r3.__str__(), "[Rectangle] (12) 0/0 - 3/5")
         self.assertEqual(self.r4.__str__(), "[Rectangle] (12) 4/3 - 9/6")
         self.assertEqual(self.r5.__str__(), "[Rectangle] (1) 1/2 - 1/6")
-        self.assertEqual(self.r6.__str__(), "[Rectangle] (142) 0/8 - 9/6")
+        self.assertEqual(self.r6.__str__(), "[Rectangle] (149) 0/8 - 9/6")
 
     def test_f_update_args(self):
         """Test for update args method"""
         print("test_update_args")
-        self.assertEqual(self.r1.__str__(), "[Rectangle] (145) 0/0 - 10/2")
+        self.assertEqual(self.r1.__str__(), "[Rectangle] (152) 0/0 - 10/2")
         self.r1.update(89)
         self.assertEqual(self.r1.__str__(), "[Rectangle] (89) 0/0 - 10/2")
         self.r1.update(89, 2)
@@ -199,11 +200,11 @@ class TestBaseClass(unittest.TestCase):
     def test_g_update_kwargs(self):
         """Test for update kwargs method"""
         print("test_update_kwargs")
-        self.assertEqual(self.r1.__str__(), "[Rectangle] (150) 0/0 - 10/2")
+        self.assertEqual(self.r1.__str__(), "[Rectangle] (157) 0/0 - 10/2")
         self.r1.update(height=1)
-        self.assertEqual(self.r1.__str__(), "[Rectangle] (150) 0/0 - 10/1")
+        self.assertEqual(self.r1.__str__(), "[Rectangle] (157) 0/0 - 10/1")
         self.r1.update(width=1, x=2)
-        self.assertEqual(self.r1.__str__(), "[Rectangle] (150) 2/0 - 1/1")
+        self.assertEqual(self.r1.__str__(), "[Rectangle] (157) 2/0 - 1/1")
         self.r1.update(y=1, width=2, x=3, id=89)
         self.assertEqual(self.r1.__str__(), "[Rectangle] (89) 3/1 - 2/1")
         self.r1.update(x=1, height=2, y=3, width=4)
@@ -212,15 +213,15 @@ class TestBaseClass(unittest.TestCase):
     def test_h_to_dictionary(self):
         """Test for to_dictionary method"""
         print("test_to_dictionary")
-        self.assertEqual(self.r7.__str__(), "[Rectangle] (158) 1/9 - 10/2")
+        self.assertEqual(self.r7.__str__(), "[Rectangle] (165) 1/9 - 10/2")
         r7_dictionary = self.r7.to_dictionary()
-        expected = {'x': 1, 'y': 9, 'id': 158, 'height': 2, 'width': 10}
+        expected = {'x': 1, 'y': 9, 'id': 165, 'height': 2, 'width': 10}
         self.assertEqual(r7_dictionary, expected)
         self.assertIs(type(r7_dictionary), dict)
 
-        self.assertEqual(self.r8.__str__(), "[Rectangle] (159) 0/0 - 1/1")
+        self.assertEqual(self.r8.__str__(), "[Rectangle] (166) 0/0 - 1/1")
         self.r8.update(**r7_dictionary)
-        self.assertEqual(self.r8.__str__(), "[Rectangle] (158) 1/9 - 10/2")
+        self.assertEqual(self.r8.__str__(), "[Rectangle] (165) 1/9 - 10/2")
         self.assertFalse(self.r7 == self.r8)
 
     def test_module_docstring(self):
@@ -294,3 +295,10 @@ class TestBaseClass(unittest.TestCase):
         print("test_to_dictionary_docstring")
         result = len(Rectangle.to_dictionary.__doc__)
         self.assertTrue(result > 0, True)
+
+    def test_pep8_conformance(self):
+        """load_from_file Docstring Test"""
+        print("test_test_pep8_conformance")
+        pep8style = pep8.StyleGuide(quiet=True)
+        result = pep8style.check_files(['models/rectangle.py'])
+        self.assertEqual(result.total_errors, 0)

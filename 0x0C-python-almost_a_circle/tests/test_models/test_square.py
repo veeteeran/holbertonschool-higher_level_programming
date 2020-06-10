@@ -6,6 +6,7 @@ from models.rectangle import Rectangle
 from models.square import Square
 import io
 from contextlib import redirect_stdout
+import pep8
 
 
 class TestBaseClass(unittest.TestCase):
@@ -45,7 +46,7 @@ class TestBaseClass(unittest.TestCase):
         self.assertIsInstance(self.s1, Base)
         self.assertIsInstance(self.s1, Rectangle)
         self.assertIs(type(self.s1), Square)
-        self.assertEqual(self.s1.id, 205)
+        self.assertEqual(self.s1.id, 217)
         self.assertEqual(self.s1.width, 5)
         self.assertEqual(self.s1.height, 5)
         self.assertEqual(self.s1.x, 0)
@@ -56,7 +57,7 @@ class TestBaseClass(unittest.TestCase):
         self.assertIsInstance(self.s2, Base)
         self.assertIsInstance(self.s2, Rectangle)
         self.assertIs(type(self.s2), Square)
-        self.assertEqual(self.s2.id, 206)
+        self.assertEqual(self.s2.id, 218)
         self.assertEqual(self.s2.width, 2)
         self.assertEqual(self.s2.height, 2)
         self.assertEqual(self.s2.x, 2)
@@ -67,7 +68,7 @@ class TestBaseClass(unittest.TestCase):
         self.assertIsInstance(self.s3, Base)
         self.assertIsInstance(self.s3, Rectangle)
         self.assertIs(type(self.s3), Square)
-        self.assertEqual(self.s3.id, 207)
+        self.assertEqual(self.s3.id, 219)
         self.assertEqual(self.s3.width, 3)
         self.assertEqual(self.s3.height, 3)
         self.assertEqual(self.s3.x, 1)
@@ -122,14 +123,14 @@ class TestBaseClass(unittest.TestCase):
     def test_e_str(self):
         """Test for __str__ method"""
         print("test_str")
-        self.assertEqual(self.s1.__str__(), "[Square] (240) 0/0 - 5")
-        self.assertEqual(self.s2.__str__(), "[Square] (241) 2/0 - 2")
-        self.assertEqual(self.s3.__str__(), "[Square] (242) 1/3 - 3")
+        self.assertEqual(self.s1.__str__(), "[Square] (252) 0/0 - 5")
+        self.assertEqual(self.s2.__str__(), "[Square] (253) 2/0 - 2")
+        self.assertEqual(self.s3.__str__(), "[Square] (254) 1/3 - 3")
 
     def test_f_update_args(self):
         """Test for update args method"""
         print("test_update_args")
-        self.assertEqual(self.s1.__str__(), "[Square] (245) 0/0 - 5")
+        self.assertEqual(self.s1.__str__(), "[Square] (257) 0/0 - 5")
         self.s1.update(10)
         self.assertEqual(self.s1.__str__(), "[Square] (10) 0/0 - 5")
         self.s1.update(1, 2)
@@ -143,24 +144,24 @@ class TestBaseClass(unittest.TestCase):
         """Test for update kwargs method"""
         print("test_update_kwargs")
         self.s1.update(x=12)
-        self.assertEqual(self.s1.__str__(), "[Square] (250) 12/0 - 5")
+        self.assertEqual(self.s1.__str__(), "[Square] (262) 12/0 - 5")
         self.s1.update(size=7, y=1)
-        self.assertEqual(self.s1.__str__(), "[Square] (250) 12/1 - 7")
+        self.assertEqual(self.s1.__str__(), "[Square] (262) 12/1 - 7")
         self.s1.update(size=7, id=89, y=1)
         self.assertEqual(self.s1.__str__(), "[Square] (89) 12/1 - 7")
 
     def test_h_to_dictionary(self):
         """Test for to_dictionary method"""
         print("test_to_dictionary")
-        self.assertEqual(self.s4.__str__(), "[Square] (258) 2/1 - 10")
+        self.assertEqual(self.s4.__str__(), "[Square] (270) 2/1 - 10")
         s4_dictionary = self.s4.to_dictionary()
-        expected = {'id': 258, 'x': 2, 'size': 10, 'y': 1}
+        expected = {'id': 270, 'x': 2, 'size': 10, 'y': 1}
         self.assertEqual(s4_dictionary, expected)
         self.assertIs(type(s4_dictionary), dict)
 
-        self.assertEqual(self.s5.__str__(), "[Square] (259) 1/0 - 1")
+        self.assertEqual(self.s5.__str__(), "[Square] (271) 1/0 - 1")
         self.s5.update(**s4_dictionary)
-        self.assertEqual(self.s5.__str__(), "[Square] (258) 2/1 - 10")
+        self.assertEqual(self.s5.__str__(), "[Square] (270) 2/1 - 10")
         self.assertFalse(self.s4 == self.s5)
 
     def test_module_docstring(self):
@@ -228,3 +229,10 @@ class TestBaseClass(unittest.TestCase):
         print("test_to_dictionary_docstring")
         result = len(Square.to_dictionary.__doc__)
         self.assertTrue(result > 0, True)
+
+    def test_pep8_conformance(self):
+        """load_from_file Docstring Test"""
+        print("test_test_pep8_conformance")
+        pep8style = pep8.StyleGuide(quiet=True)
+        result = pep8style.check_files(['models/square.py'])
+        self.assertEqual(result.total_errors, 0)
