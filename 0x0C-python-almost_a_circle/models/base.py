@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Docstring for Base class"""
 import json
+import csv
 
 
 class Base:
@@ -99,5 +100,53 @@ class Base:
                 my_list.append(obj)
 
             return my_list
+        except:
+            return []
+
+    @classmethod
+    def save_to_file_csv(cls, list_objs):
+        """writes the JSON string representation of list_objs
+           to a csv file
+
+            Parameter:
+                list_objs: a list of instances that inherits from Base
+        """
+        new_list = []
+        filename = "{}.csv".format(cls.__name__)
+
+        if cls.__name__ == "Rectangle":
+            fieldnames = ['width', 'height', 'x', 'y', 'id']
+        elif cls.__name__ == "Square":
+            fieldnames = ['size', 'x', 'y', 'id']
+
+        with open(filename, 'w', encoding='utf-8') as f:
+            if list_objs is None and type(list_objs) is not list:
+                f.write("[]")
+            else:
+                for obj in list_objs:
+                    new_list.append(obj.to_dictionary())
+
+                writer = csv.DictWriter(f, fieldnames=fieldnames)
+                writer.writeheader()
+
+                for d in new_list:
+                    writer.writerow(d)
+
+    @classmethod
+    def load_from_file_csv(cls):
+        """Returns a list of instances
+        """
+        my_list = []
+        filename = "{}.csv".format(cls.__name__)
+        try:
+            with open(filename, 'r', encoding='utf-8') as f:
+                reader = csv.DictReader(f)
+                for r in reader:
+                    for value in r:
+                        r[value] = int(r[value])
+                    obj = cls.create(**r)
+                    my_list.append(obj)
+
+                return my_list
         except:
             return []
