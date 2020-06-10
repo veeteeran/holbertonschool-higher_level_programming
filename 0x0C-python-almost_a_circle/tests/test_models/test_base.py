@@ -35,15 +35,6 @@ class TestBaseClass(unittest.TestCase):
     def tearDown(self):
         """Unit test tear down"""
         print('tearDown')
-#        del self.b1
-#        del self.b2
-#        del self.b3
-#        del self.b4
-#        del self.b5
-#        del self.r1
-#        del self.r2
-#        del self.s1
-#        del self.s2
 
     def test_a_init(self):
         """Test for init method"""
