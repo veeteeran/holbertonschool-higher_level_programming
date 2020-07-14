@@ -1,5 +1,4 @@
 -- lists all shows contained in hbtn_0d_tvshows
--- Another fucking comment
 SELECT tv_shows.title, tv_show_genres.genre._id
 	FROM tv_shows
 	INNER JOIN tv_show_genres
