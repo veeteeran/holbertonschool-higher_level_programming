@@ -16,4 +16,3 @@ if __name__ == "__main__":
     new_state = State(id=6, name="Louisiana")
     session.add(new_state)
     session.commit()
-    print(new_state.id)
