@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Lists all cities from the database hbtn_0e_4_usa"""
+"""Lists all cities of that state from the database hbtn_0e_4_usa"""
 if __name__ == "__main__":
     from sys import argv
     import MySQLdb
