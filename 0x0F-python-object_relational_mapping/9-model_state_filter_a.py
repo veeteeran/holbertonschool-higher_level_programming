@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Lists all State objects from the database hbtn_0e_6_usa"""
+"""Lists all State objects containing 'a' in db hbtn_0e_6_usa"""
 import sys
 from model_state import Base, State
 from sqlalchemy.orm import sessionmaker

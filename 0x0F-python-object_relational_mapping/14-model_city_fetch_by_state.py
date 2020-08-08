@@ -1,7 +1,8 @@
 #!/usr/bin/python3
-"""Delete all State objects containing letter 'a' from db hbtn_0e_6_usa"""
+"""Lists all State objects from the database hbtn_0e_6_usa"""
 import sys
 from model_state import Base, State
+from model_city import City
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import (create_engine)
 
@@ -13,4 +14,11 @@ if __name__ == "__main__":
 
     Session = sessionmaker(bind=engine)
     session = Session()
-    session.query(State).filter(State.name.like('%a%')).delete()
+    records = session.query(City).join(State).all()
+    """
+    records = session.query(City).join(State, State.id == City.state_id).all()
+    """
+    for record in records:
+        print(records)
+        print(": ({}) {}".format(record.id, record.name))
+    
