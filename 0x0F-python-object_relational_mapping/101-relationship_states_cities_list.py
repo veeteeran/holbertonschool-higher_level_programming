@@ -20,6 +20,5 @@ if __name__ == "__main__":
     records = session.query(State).all()
     for s in records:
         print("{}: {}".format(s.id, s.name))
-        for c in session.query(City).all():
-            if s.id == c.state_id:
-                print("\t{}: {}".format(c.id, c.name))
+        for i in range(len(s.cities)):
+            print("\t{}: {}".format(s.cities[i].id, s.cities[i].name))
