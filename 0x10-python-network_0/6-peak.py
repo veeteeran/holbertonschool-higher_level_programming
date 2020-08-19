@@ -11,9 +11,4 @@ def find_peak(list_of_integers):
     """
     if list_of_integers == []:
         return None
-    for i in range(len(list_of_integers)):
-        if i == 0:
-            bigboi = list_of_integers[i]
-        elif list_of_integers[i] > bigboi:
-            bigboi = list_of_integers[i]
-    return bigboi
+    return max(list_of_integers)
