@@ -1,6 +1,6 @@
 #!/usr/bin/python3
-"""Takes your Github credentials (username and password) and uses
-   the Github API to display your id
+"""List 10 commits (from the most recent to oldest) of the repository
+   “rails” by the user “rails” 
 """
 from requests import get, post
 from sys import argv
@@ -8,7 +8,7 @@ from sys import argv
 if __name__ == "__main__":
     repo = argv[1]
     owner = argv[2]
-    url = 'https://api.github.com/repos/{}/{}/commits'.format(repo, owner)
+    url = 'https://api.github.com/repos/{}/{}/commits'.format(owner, repo)
     r = get(url)
     commits = r.json()
     counter = 0
