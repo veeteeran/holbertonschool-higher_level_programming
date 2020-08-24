@@ -14,4 +14,6 @@ if __name__ == "__main__":
             read = response.read()
             print(read.decode("UTF-8"))
     except HTTPError as e:
+        e = str(e)
+        e = e.split()[2].replace(':', '')
         print('Error code: {}'.format(e.code))
