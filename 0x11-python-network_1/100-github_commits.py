@@ -11,6 +11,10 @@ if __name__ == "__main__":
     url = 'https://api.github.com/repos/{}/{}/commits'.format(repo, owner)
     r = get(url)
     commits = r.json()
-    for i in range(len(commits) - 11, len(commits)):
-        print('{} {}'.format(commits[i]['sha'],
-                             commits[i]['commit']['author']['name']))
+    counter = 0
+    for commit in commits:
+        if counter == 10:
+            break
+        print('{}: {}'.format(commit.get('sha'),
+                              commit.get('commit').get('author').get('name')))
+        counter += 1
