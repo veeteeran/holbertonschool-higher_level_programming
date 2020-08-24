@@ -9,7 +9,7 @@ from sys import argv
 if __name__ == "__main__":
     url = argv[1]
     try:
-        req = Request(url, data)
+        req = Request(url)
         with urlopen(req) as response:
             read = response.read()
             print(read.decode("UTF-8"))
