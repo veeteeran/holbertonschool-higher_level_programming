@@ -17,4 +17,4 @@ if __name__ == "__main__":
     except HTTPError as e:
         e = str(e)
         e = e.split()[2].replace(':', '')
-        print('Error code: {}'.format(e.code))
+        print('Error code: {}'.format(e))
