@@ -1,7 +1,6 @@
 #!/usr/bin/python3
-from requests import get
 """Fetches https://intranet.hbtn.io/status"""
-
+from requests import get
 
 if __name__ == "__main__":
     url = 'https://intranet.hbtn.io/status'

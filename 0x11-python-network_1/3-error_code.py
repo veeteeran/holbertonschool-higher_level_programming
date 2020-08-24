@@ -1,11 +1,10 @@
 #!/usr/bin/python3
+"""Takes in a URL, sends a request to the URL and displays
+    the body of the response
+"""
 from urllib.request import urlopen, Request
 from urllib.parse import urlencode
 from sys import argv
-"""Takes in a URL, sends a request to the URL and displays
-    the body of the response 
-"""
-
 
 if __name__ == "__main__":
     url = argv[1]
