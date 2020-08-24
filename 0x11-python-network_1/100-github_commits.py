@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """List 10 commits (from the most recent to oldest) of the repository
-   “rails” by the user “rails” 
+   “rails” by the user “rails”
 """
 from requests import get, post
 from sys import argv
