@@ -6,8 +6,4 @@ from requests import get
 from sys import argv
 
 if __name__ == "__main__":
-    try:
-        req = get(argv[1])
-        print(req.headers['x-request-id'])
-    except:
-        pass
+    print(get(argv[1]).headers.get('x-request-id'))
