@@ -1,10 +1,6 @@
 #!/usr/bin/node
 
 module.exports = class Square extends require('./5-square.js') {
-  constructor (size) {
-    super(size, size);
-  }
-
   // prints the rectangle using the character c
   charPrint (c) {
     if (c === undefined) {
