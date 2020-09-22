@@ -2,15 +2,16 @@
 const request = require('request');
 const args = process.argv.splice(2);
 let count = 0;
-const wedge = 'https://swapi-api.hbtn.io/api/people/18/';
 request(args[0], function (error, response, body) {
   if (error) {
     console.log('code: %d', response.statusCode);
   } else {
     const swapi = JSON.parse(body);
     for (let i = 0; i < swapi.results.length; i++) {
-      if (swapi.results[i].characters.includes(wedge)) {
-        count++;
+      for (let j = 0; j < swapi.results[i].characters.length; j++) {
+        if (swapi.results[i].characters[j].includes('18')) {
+          count++;
+        }
       }
     }
   }
