@@ -11,12 +11,14 @@ request(args[0], function (error, response, body) {
     let userId = 1;
     for (let i = 0; i < obj.length; i++) {
       if (obj[i].completed) {
-        count++;
-        returnDict[obj[i].userId] = count;
-      }
-      if (obj[i].userId !== userId) {
-        count = 0;
-        userId++;
+        if (obj[i].userId === userId) {
+          count++;
+          returnDict[obj[i].userId] = count;
+        } else {
+          count = 0;
+          userId++;
+          returnDict[obj[i].userId] = count;
+        }
       }
     }
   }
