@@ -7,19 +7,14 @@ request(args[0], function (error, response, body) {
     console.log('code: %d', response.statusCode);
   } else {
     const obj = JSON.parse(body);
-    let count = 0;
-    let userId = 1;
     for (let i = 0; i < obj.length; i++) {
-      if (obj[i].completed && obj[i].userId === userId) {
-        count++;
-        returnDict[obj[i].userId] = count;
+      if (!returnDict[obj[i].userId]) {
+        returnDict[obj[i].userId] = 0;
       }
-      if (obj[i].completed && obj[i].userId !== userId) {
-        count = 0;
-        userId++;
-        returnDict[obj[i].userId] = count;
+      if (obj[i].completed) {
+        returnDict[obj[i].userId]++;
       }
     }
+    console.log(returnDict);
   }
-  console.log(returnDict);
 });
