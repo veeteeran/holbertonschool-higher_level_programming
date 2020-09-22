@@ -10,15 +10,14 @@ request(args[0], function (error, response, body) {
     let count = 0;
     let userId = 1;
     for (let i = 0; i < obj.length; i++) {
-      if (obj[i].completed) {
-        if (obj[i].userId === userId) {
-          count++;
-          returnDict[obj[i].userId] = count;
-        } else {
-          count = 0;
-          userId++;
-          returnDict[obj[i].userId] = count;
-        }
+      if (obj[i].completed && obj[i].userId === userId) {
+        count++;
+        returnDict[obj[i].userId] = count;
+      }
+      if (obj[i].completed && obj[i].userId !== userId) {
+        count = 0;
+        userId++;
+        returnDict[obj[i].userId] = count;
       }
     }
   }
