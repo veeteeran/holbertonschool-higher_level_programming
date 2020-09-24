@@ -1,4 +1,3 @@
 #!/usr/bin/node
-$(document).ready(function () {
-  $('header').css('color', '#FF0000');
-});
+//updates the text color of the HTML tag HEADER to red using JQuery API
+$(document).ready(() => $('header').css('color', '#FF0000'));
